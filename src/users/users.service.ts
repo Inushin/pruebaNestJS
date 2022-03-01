@@ -1,5 +1,5 @@
-import { Injectable } from '@nestjs/common';
-import { CreateUserInput } from './dto/create-user.input';
+import { Injectable } from '@nestjs/common'
+import { CreateUserInput } from './dto/create-user.input'
 
 @Injectable()
 export class UsersService {
@@ -27,14 +27,14 @@ export class UsersService {
       ...createUserInput,
       id: this.users.length + 1,
     }
-    return 'This action adds a new user';
+    return 'This action adds a new user'
   }
 
   findAll() {
-    return this.users;
+    return this.users
   }
 
   findOne(username: string) {
-    return this.users.find((user) => user.username === username);
+    return this.users.find((user) => user.username === username)
   }
 }
