@@ -9,6 +9,12 @@ input CrearToDo {
   user: Int!
 }
 
+input CreateUserInput {
+  id: Int!
+  password: String!
+  username: String!
+}
+
 input EliminarToDo {
   id_todo: Int!
 }
@@ -33,6 +39,7 @@ input ModificarToDo {
 type Mutation {
   BorrarToDo(eliminarToDo: EliminarToDo!): ToDo!
   CrearToDo(nuevoToDo: CrearToDo!): ToDo!
+  CrearUsuario(creacionUsuario: CreateUserInput!): User!
   ModificarToDo(modificarToDo: ModificarToDo!): ToDo!
   login(loginUserInput: LoginUserInput!): LoginResponse!
 }
@@ -53,5 +60,6 @@ type ToDo {
 
 type User {
   id: Int!
+  password: String!
   username: String!
 }

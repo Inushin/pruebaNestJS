@@ -20,6 +20,10 @@ export class User {
   @Column()
   username: string;
 
+  @Field()
+  @Column()
+  password: string;
+
   @OneToMany(() => ToDo, (todo) => todo.user)
   todos: ToDo[];
 }
