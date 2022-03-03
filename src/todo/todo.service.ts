@@ -1,4 +1,4 @@
-import { Get, Injectable, Post, Put } from '@nestjs/common';
+import { Delete, Get, Injectable, Post, Put } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { ToDo } from './entities/todo.entity';
@@ -35,4 +35,10 @@ export class TodoService {
     modificado[0].finalizada = todo.finalizada;
     return this.todoRepository.save(modificado[0]);
   }
+
+  @Delete('eliminar/:id')
+  async remove(id_todo: number) {
+      await this.todoRepository.delete(id_todo);
+  }
+
 }

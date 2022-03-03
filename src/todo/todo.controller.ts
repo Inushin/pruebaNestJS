@@ -1,6 +1,7 @@
 import { Controller } from '@nestjs/common';
 import { Args, Query, Resolver, Mutation } from '@nestjs/graphql';
 import { CrearToDo } from './dto/crearTodo';
+import { EliminarToDo } from './dto/eliminarTodo';
 import { ModificarToDo } from './dto/modificarTodo';
 import { ToDo } from './entities/todo.entity';
 import { TodoService } from './todo.service';
@@ -37,5 +38,8 @@ export class TodoController {
   }
 
   //Borrar ToDo
-
+  @Mutation(() => ToDo, { name: "BorrarToDo" })
+  remove(@Args('eliminarToDo') todo: EliminarToDo) {
+      return this.todoService.remove(todo.id_todo);
+  }
 }

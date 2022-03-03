@@ -9,6 +9,10 @@ input CrearToDo {
   user: Int!
 }
 
+input EliminarToDo {
+  id_todo: Int!
+}
+
 type LoginResponse {
   access_token: String!
   user: User!
@@ -27,6 +31,7 @@ input ModificarToDo {
 }
 
 type Mutation {
+  BorrarToDo(eliminarToDo: EliminarToDo!): ToDo!
   CrearToDo(nuevoToDo: CrearToDo!): ToDo!
   ModificarToDo(modificarToDo: ModificarToDo!): ToDo!
   login(loginUserInput: LoginUserInput!): LoginResponse!
