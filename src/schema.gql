@@ -5,12 +5,10 @@
 input CrearToDo {
   actividad: String!
   finalizada: Boolean
-  id_todo: Int!
   user: Int!
 }
 
 input CreateUserInput {
-  id: Int!
   password: String!
   username: String!
 }

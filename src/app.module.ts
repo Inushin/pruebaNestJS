@@ -13,6 +13,11 @@ import { TypeOrmModule } from '@nestjs/typeorm';
       driver: ApolloDriver,
       autoSchemaFile: join(process.cwd(), 'src/schema.gql'),
       sortSchema: true,
+      /*cors:{
+        origin:'http://localhost:3000',
+        Credential:true
+      }
+      */
     }),
     UsersModule,
     AuthModule,
