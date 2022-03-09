@@ -1,5 +1,6 @@
-import { Controller } from '@nestjs/common';
+import { Controller, UseGuards } from '@nestjs/common';
 import { Args, Query, Resolver, Mutation } from '@nestjs/graphql';
+import { JwtAuthGuard } from 'src/auth/jwt-auth.guatd';
 import { CrearToDo } from './dto/crearTodo';
 import { EliminarToDo } from './dto/eliminarTodo';
 import { ModificarToDo } from './dto/modificarTodo';
@@ -20,7 +21,7 @@ export class TodoController {
 
   //Muestra ToDo por ID del todo --> Se busca que muestre las que tienen mismo ID usuario
   @Query(() => [ToDo], { name: 'todosById' })
-  //@UseGuards(JwtAuthGuard)
+  @UseGuards(JwtAuthGuard)
   findById(@Args('id') id_todo:number): Promise<ToDo[]> {
     return this.todoService.findById(id_todo);
   }

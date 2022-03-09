@@ -21,6 +21,7 @@ export class UsersResolver {
   }
 
   @Mutation(() => User, { name: "CrearUsuario" })
+  @UseGuards(JwtAuthGuard)
   create(@Args('creacionUsuario') user: CreateUserInput): Promise<User> {
       return this.usersService.create(user);
   }

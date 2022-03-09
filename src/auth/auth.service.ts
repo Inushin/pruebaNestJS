@@ -22,13 +22,13 @@ export class AuthService {
     return null;
   }
 
-  async login(user: User) {
+  async login(user: User[]) {
     return {
       access_token: this.jwtService.sign({
         username: user[0].username,
         sub: user[0].id,
       }),
-      user,
+      user:user[0],
     };
   }
 }
