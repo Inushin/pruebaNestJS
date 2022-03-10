@@ -4,6 +4,7 @@ import { Repository } from 'typeorm';
 import { ToDo } from './entities/todo.entity';
 import { CrearToDo } from './dto/crearTodo';
 import { ModificarToDo } from './dto/modificarTodo';
+import { User } from 'src/users/entities/user.entity';
 
 @Injectable()
 export class TodoService {
@@ -19,6 +20,11 @@ export class TodoService {
   @Get('todosusuario/:id')
   async findById(id_todo: number): Promise<ToDo[]> {
     return this.todoRepository.find({ id_todo });
+  }
+
+  @Get('todosidusuario/:userId')
+  async findToDosByUserId(user: number): Promise<ToDo[]> {
+    return this.todoRepository.find(ToDo[user]);
   }
 
   @Post('create')

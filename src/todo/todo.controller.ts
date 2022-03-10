@@ -6,6 +6,7 @@ import { EliminarToDo } from './dto/eliminarTodo';
 import { ModificarToDo } from './dto/modificarTodo';
 import { ToDo } from './entities/todo.entity';
 import { TodoService } from './todo.service';
+import { User } from 'src/users/entities/user.entity';
 
 //@Resolver(of => ToDo)
 @Controller('todo')
@@ -24,6 +25,12 @@ export class TodoController {
   @UseGuards(JwtAuthGuard)
   findById(@Args('id') id_todo:number): Promise<ToDo[]> {
     return this.todoService.findById(id_todo);
+  }
+
+
+  @Query(() => [ToDo], {name:'todosByUserId'})
+  findToDosByUserId( @Args ('userId') user: number): Promise<ToDo[]> {
+    return this.todoService.findToDosByUserId(ToDo[user]);
   }
 
   //Crea nuevo ToDo
