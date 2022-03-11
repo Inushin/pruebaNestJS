@@ -30,7 +30,7 @@ export class TodoController {
 
   @Query(() => [ToDo], {name:'todosByUserId'})
   findToDosByUserId( @Args ('userId') user: number): Promise<ToDo[]> {
-    return this.todoService.findToDosByUserId(ToDo[user]);
+    return this.todoService.findToDosByUserId(ToDo[User[user]]);
   }
 
   //Crea nuevo ToDo

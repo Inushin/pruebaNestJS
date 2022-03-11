@@ -24,7 +24,7 @@ export class TodoService {
 
   @Get('todosidusuario/:userId')
   async findToDosByUserId(user: number): Promise<ToDo[]> {
-    return this.todoRepository.find(ToDo[user]);
+    return this.todoRepository.find(ToDo[User[user]]);
   }
 
   @Post('create')
