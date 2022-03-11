@@ -12,39 +12,32 @@ export class TodoService {
     @InjectRepository(ToDo) private todoRepository: Repository<ToDo>,
   ) {}
 
-  @Get()
   async findAll(): Promise<ToDo[]> {
-    return this.todoRepository.find();
+    return await this.todoRepository.find();
   }
 
-  @Get('todosusuario/:id')
   async findById(id_todo: number): Promise<ToDo[]> {
-    return this.todoRepository.find({ id_todo });
+    return await this.todoRepository.find({ id_todo });
   }
 
-  @Get('todosidusuario/:userId')
-  async findToDosByUserId(user: number): Promise<ToDo[]> {
-    return this.todoRepository.find(ToDo[User[user]]);
+  async findToDosByUserId(userId: number): Promise<ToDo[]> {
+    return await this.todoRepository.find({ where: { user: userId } });
   }
 
-  @Post('create')
   async create(todo: CrearToDo): Promise<ToDo> {
     let actividad = this.todoRepository.create(todo);
-    return this.todoRepository.save(actividad);
+    return await this.todoRepository.save(actividad);
   }
 
-  @Put('editar/:id')
   async update(todo: ModificarToDo): Promise<ToDo> {
     let modificado = await this.findById(todo.id_todo);
 
     modificado[0].actividad = todo.actividad;
     modificado[0].finalizada = todo.finalizada;
-    return this.todoRepository.save(modificado[0]);
+    return await this.todoRepository.save(modificado[0]);
   }
 
-  @Delete('eliminar/:id')
   async remove(id_todo: number) {
-      await this.todoRepository.delete(id_todo);
+    await this.todoRepository.delete(id_todo);
   }
-
 }

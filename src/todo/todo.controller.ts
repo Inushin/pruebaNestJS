@@ -23,31 +23,31 @@ export class TodoController {
   //Muestra ToDo por ID del todo --> Se busca que muestre las que tienen mismo ID usuario
   @Query(() => [ToDo], { name: 'todosById' })
   @UseGuards(JwtAuthGuard)
-  findById(@Args('id') id_todo:number): Promise<ToDo[]> {
+  findById(@Args('id') id_todo: number): Promise<ToDo[]> {
     return this.todoService.findById(id_todo);
   }
 
-
-  @Query(() => [ToDo], {name:'todosByUserId'})
-  findToDosByUserId( @Args ('userId') user: number): Promise<ToDo[]> {
-    return this.todoService.findToDosByUserId(ToDo[User[user]]);
+  @Query(() => [ToDo], { name: 'todosByUserId' })
+  findToDosByUserId(@Args('userId') userId: number): Promise<ToDo[]> {
+    return this.todoService.findToDosByUserId(userId);
+    
   }
 
   //Crea nuevo ToDo
-  @Mutation(() => ToDo, { name: "CrearToDo" })
-    create(@Args('nuevoToDo') todo: CrearToDo):Promise<ToDo> {
-        return this.todoService.create(todo);
-    }
+  @Mutation(() => ToDo, { name: 'CrearToDo' })
+  create(@Args('nuevoToDo') todo: CrearToDo): Promise<ToDo> {
+    return this.todoService.create(todo);
+  }
 
   //Editar ToDo
-  @Mutation(() => ToDo, { name: "ModificarToDo" })
-  update(@Args('modificarToDo') todo: ModificarToDo):Promise<ToDo> {
-      return this.todoService.update(todo);
+  @Mutation(() => ToDo, { name: 'ModificarToDo' })
+  update(@Args('modificarToDo') todo: ModificarToDo): Promise<ToDo> {
+    return this.todoService.update(todo);
   }
 
   //Borrar ToDo
-  @Mutation(() => ToDo, { name: "BorrarToDo" })
+  @Mutation(() => ToDo, { name: 'BorrarToDo' })
   remove(@Args('eliminarToDo') todo: EliminarToDo) {
-      return this.todoService.remove(todo.id_todo);
+    return this.todoService.remove(todo.id_todo);
   }
 }
