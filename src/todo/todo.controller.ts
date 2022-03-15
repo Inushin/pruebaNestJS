@@ -1,4 +1,4 @@
-import { Controller, UseGuards } from '@nestjs/common';
+import { Controller, Get, UseGuards } from '@nestjs/common';
 import { Args, Query, Resolver, Mutation } from '@nestjs/graphql';
 import { JwtAuthGuard } from 'src/auth/jwt-auth.guatd';
 import { CrearToDo } from './dto/crearTodo';
@@ -15,6 +15,7 @@ export class TodoController {
 
   //Muestra todas las ToDo
   @Query(() => [ToDo], { name: 'todos' })
+  @Get('prueba')
   //@UseGuards(JwtAuthGuard)
   findAll(): Promise<ToDo[]> {
     return this.todoService.findAll();

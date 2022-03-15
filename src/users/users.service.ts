@@ -12,17 +12,15 @@ export class UsersService {
 
   @Get()
   async findAll(): Promise<User[]> {
-    return this.userRepository.find();
+    return await this.userRepository.find();
   }
 
-  @Post('user/registro')
   async create(user: CreateUserInput): Promise<User> {
     let usuario = this.userRepository.create(user);
-    return this.userRepository.save(usuario);
+    return await this.userRepository.save(usuario);
   }
 
-  @Get('usuario/:id')
-  findOne(username: string): Promise<User[]>  {
-    return this.userRepository.find( {username});
+  async findOne(username: string): Promise<User[]>  {
+    return await this.userRepository.find( {username});
   }
 }
