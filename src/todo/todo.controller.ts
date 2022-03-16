@@ -16,7 +16,7 @@ export class TodoController {
   //Muestra todas las ToDo
   @Query(() => [ToDo], { name: 'todos' })
   @Get('prueba')
-  //@UseGuards(JwtAuthGuard)
+  @UseGuards(JwtAuthGuard)
   findAll(): Promise<ToDo[]> {
     return this.todoService.findAll();
   }
@@ -29,6 +29,7 @@ export class TodoController {
   }
 
   @Query(() => [ToDo], { name: 'todosByUserId' })
+  @UseGuards(JwtAuthGuard)
   findToDosByUserId(@Args('userId') userId: number): Promise<ToDo[]> {
     return this.todoService.findToDosByUserId(userId);
     
@@ -36,6 +37,7 @@ export class TodoController {
 
   //Crea nuevo ToDo
   @Mutation(() => ToDo, { name: 'CrearToDo' })
+  @UseGuards(JwtAuthGuard)
   create(@Args('nuevoToDo') todo: CrearToDo): Promise<ToDo> {
     return this.todoService.create(todo);
   }

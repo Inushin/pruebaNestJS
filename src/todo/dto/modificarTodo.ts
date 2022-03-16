@@ -13,8 +13,4 @@ export class ModificarToDo {
   
     @Field((type) => Boolean, { nullable: true })
     finalizada: boolean;
-  
-    @Field(() => Int)
-    @ManyToOne((type) => User, (user) => user.todos)
-    user!: User;
   }
